@@ -1,0 +1,102 @@
+[
+  {
+    "category": "happy",
+    "id": "yay",
+    "title": "YAY!"
+  },
+  {
+    "category": "happy",
+    "id": "lets-go",
+    "title": "LET\u2019S GO!"
+  },
+  {
+    "category": "happy",
+    "id": "big-smile",
+    "title": "BIG SMILE"
+  },
+  {
+    "category": "funny",
+    "id": "lol",
+    "title": "LOL"
+  },
+  {
+    "category": "funny",
+    "id": "oops",
+    "title": "OOPS!"
+  },
+  {
+    "category": "funny",
+    "id": "whee",
+    "title": "WHEEE!"
+  },
+  {
+    "category": "sad",
+    "id": "oh-no",
+    "title": "OH NO"
+  },
+  {
+    "category": "sad",
+    "id": "sending-hugs",
+    "title": "HUGS"
+  },
+  {
+    "category": "memes",
+    "id": "bruh",
+    "title": "BRUH"
+  },
+  {
+    "category": "memes",
+    "id": "wait-what",
+    "title": "WAIT, WHAT?"
+  },
+  {
+    "category": "memes",
+    "id": "this-is-fine",
+    "title": "THIS IS FINE"
+  },
+  {
+    "category": "gaming",
+    "id": "gg",
+    "title": "GG"
+  },
+  {
+    "category": "gaming",
+    "id": "level-up",
+    "title": "LEVEL UP"
+  },
+  {
+    "category": "gaming",
+    "id": "lag",
+    "title": "LAG?!"
+  },
+  {
+    "category": "love",
+    "id": "love-it",
+    "title": "LOVE IT"
+  },
+  {
+    "category": "love",
+    "id": "blue-heart",
+    "title": "FOR YOU"
+  },
+  {
+    "category": "surprised",
+    "id": "wow",
+    "title": "WOW!"
+  },
+  {
+    "category": "surprised",
+    "id": "plot-twist",
+    "title": "PLOT TWIST"
+  },
+  {
+    "category": "celebrate",
+    "id": "nice",
+    "title": "NICE!"
+  },
+  {
+    "category": "celebrate",
+    "id": "you-did-it",
+    "title": "YOU DID IT"
+  }
+]

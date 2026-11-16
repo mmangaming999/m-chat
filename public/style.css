@@ -1,0 +1,526 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    background: #10131a;
+    min-height: 100vh;
+}
+
+.auth-screen {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    gap: clamp(20px, 5vh, 52px);
+    min-height: 100dvh;
+    padding: clamp(16px, 4vh, 42px) 16px;
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 2vw, 18px);
+    color: #eef5ff;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1;
+    letter-spacing: -.02em;
+}
+
+.auth-brand .mark {
+    width: clamp(52px, 7vw, 76px);
+    height: clamp(52px, 7vw, 76px);
+    border-radius: 16px;
+}
+
+.auth-brand .mark b {
+    font-size: clamp(36px, 5vw, 53px);
+}
+
+.auth-screen > .container {
+    align-self: center;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #2da0a8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #2da0a8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #2da0a8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+[hidden] { display: none !important; }
+button:focus-visible, input:focus-visible, .messages:focus-visible {
+    outline: 2px solid #295bb0;
+    outline-offset: 3px;
+}
+.container input:focus-visible { outline: 2px solid #295bb0; }
+.container .form-status, .form-status {
+    min-height: 1.25rem;
+    margin: 8px 0 0;
+    color: #a32238;
+    font-size: .85rem;
+}
+#mchat-test{--panel:#141820;--edge:#262e3b;--blue:#8dcaff;--ink:#eef5ff;--muted:#a2afc3;display:grid;grid-template-columns:184px minmax(0,1fr);min-height:324px;background:#10131a;color:var(--ink);font:14px/1.45 Inter,"Segoe UI",sans-serif;position:relative;color-scheme:dark}
+#mchat-test *{box-sizing:border-box}
+#mchat-test [hidden]{display:none!important}
+#mchat-test button{font:inherit;color:inherit;border:0;background:none;border-radius:8px;min-height:32px;padding:4px 8px}
+#mchat-test button:hover,#mchat-test button[aria-pressed=true]{background:#253348;color:var(--blue)}
+#mchat-test i,#mchat-test svg{width:18px;height:18px;vertical-align:middle}
+#mchat-test aside{background:var(--panel);padding:10px 12px;border-right:1px solid var(--edge)}
+#mchat-test .brand{display:flex;align-items:center;gap:10px;font-weight:600;margin-bottom:12px}
+.mark{display:grid;place-items:center;width:30px;height:30px;border:1px solid #41608e;border-radius:10px;background:#1a2539}
+.mark b{font-size:22px;font-weight:900;font-style:italic;background:linear-gradient(#e9f7ff,#79bfff 43%,#356fc5 52%,#a5d9ff);background-clip:text;color:transparent}
+#mchat-test .nav-label{display:block;color:var(--muted);font-size:12px;margin:10px 0 2px}
+#mchat-test nav button{display:block;width:100%;text-align:left}
+#mchat-test nav .dm-picture{display:flex;align-items:center;gap:8px;padding:3px 6px;min-height:38px}
+#mchat-test canvas{width:32px;height:32px;display:block;border-radius:50%;image-rendering:pixelated}
+#mchat-test .pfp:hover{outline:2px solid var(--blue);outline-offset:1px}
+#mchat-test nav .dm-picture[aria-pressed=true]{box-shadow:inset 0 0 0 1px #6395c8}
+#mchat-test .screen{min-width:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+#mchat-test header{padding:7px 14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;border-bottom:1px solid var(--edge)}
+#mchat-test h2,#mchat-test h3,#mchat-test p{margin:0}
+#mchat-test h2{font-size:16px}
+#mchat-test .sub,#mchat-test time{color:var(--muted);font-size:12px}
+#mchat-test .actions{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+#mchat-test .content{display:flex;position:relative;min-width:0}
+#mchat-test .feed{padding:12px 14px;flex:1;min-width:0}
+#mchat-test .date{color:var(--muted);text-align:center;display:flex;align-items:center;gap:12px;font-size:12px;margin-bottom:12px}
+#mchat-test .date::before,#mchat-test .date::after{content:"";height:1px;background:var(--edge);flex:1}
+#mchat-test .message{display:grid;grid-template-columns:32px minmax(0,1fr);grid-template-areas:"picture sender" ". bubble";column-gap:8px;margin-bottom:9px}
+#mchat-test .mine{grid-template-columns:minmax(0,1fr) 32px;grid-template-areas:"sender picture" "bubble .";text-align:right}
+#mchat-test .message .pfp{grid-area:picture}
+#mchat-test .sender-name{font-weight:600}
+#mchat-test .pfp{width:32px;height:32px;border-radius:50%;background:#304c76;color:white;padding:0;font-weight:600;flex:none}
+#mchat-test .pfp.jo{background:#604e79}
+#mchat-test .pfp.sam{background:#2b665e}
+#mchat-test .meta{grid-area:sender;display:flex;gap:7px;flex-wrap:wrap;align-items:center;min-width:0;overflow-wrap:anywhere}
+#mchat-test .mine .meta{justify-content:flex-end}
+#mchat-test .mine .meta time{order:-1}
+#mchat-test .bubble{color:#fff;grid-area:bubble;justify-self:start;max-width:100%;background:#202734;border-radius:4px 13px 13px;padding:5px 9px;margin-top:2px;overflow-wrap:anywhere}
+#mchat-test .mine .bubble{justify-self:end;background:#1c3855;border-radius:13px 4px 13px 13px}
+#mchat-test .members{border-left:1px solid var(--edge);border-right:0;width:150px;flex:none}
+#mchat-test .members p{margin-top:10px;display:flex;align-items:center;gap:7px}
+#mchat-test form{border-top:1px solid var(--edge);padding:7px 12px;display:flex;gap:5px;flex-wrap:wrap;background:var(--panel);align-items:center}
+#mchat-test input{min-width:95px;flex:1;background:#1b2330;color:var(--ink);border:1px solid var(--edge);font:inherit;border-radius:8px;padding:6px 9px}
+#mchat-test .send{background:#335f94}
+#mchat-test .hangup{background:#782e40}
+#mchat-test .popover{position:absolute;z-index:2;bottom:49px;left:15px;background:#202836;padding:10px;border:1px solid #3d4b63;border-radius:10px}
+#mchat-test .composer{position:relative}
+#mchat-test dialog{max-width:calc(100% - 20px);width:290px;margin:auto;inset:0;background:#1b2330;color:var(--ink);border:1px solid #435370;border-radius:14px;padding:18px}
+#mchat-test dialog::backdrop{background:#0a0e18ab}
+#mchat-test dialog p{margin-top:8px}
+#mchat-test dialog .close{float:right}
+#mchat-test .callbar{padding:5px 14px;background:#1c2a3b}
+@media(max-width:700px){#mchat-test{grid-template-columns:154px minmax(0,1fr)}#mchat-test .members{position:absolute;top:0;right:0;bottom:0;z-index:1}}
+@media(max-width:460px){#mchat-test{grid-template-columns:1fr}#mchat-test .sidebar{border-right:0;border-bottom:1px solid var(--edge);padding:10px}#mchat-test .brand{margin-bottom:4px}#mchat-test nav{display:flex;gap:6px;flex-wrap:wrap}#mchat-test nav button{width:auto}#mchat-test .nav-label{display:none}}
+#mchat-test nav .room-entry{display:flex;gap:8px;align-items:center;min-height:38px;padding:3px 6px}
+#mchat-test .room-logo{display:grid;place-items:center;width:32px;height:32px;flex:none;overflow:hidden;background:#23364f;color:#a8d6ff;border-radius:8px;font-size:11px;font-weight:600}
+#mchat-test .room-logo img{width:100%;height:100%;object-fit:cover}
+#mchat-test .pixel-logo{image-rendering:pixelated}
+#mchat-test .room-heading{display:flex;align-items:center;gap:8px}
+#mchat-test dialog.logo-dialog{width:330px;padding:14px}
+#mchat-test .logo-modes,#mchat-test .pixel-tools,#mchat-test .logo-footer{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:8px}
+#mchat-test [data-logo-preview]{margin-left:auto;width:36px;height:36px}
+#mchat-test .pixel-tools label{display:flex;align-items:center;gap:5px}
+#mchat-test [data-logo-color]{min-width:0;width:34px;height:28px;padding:2px}
+#mchat-test [data-logo-file]{width:100%;margin-top:4px}
+#mchat-test .pixel-board{position:relative;width:min(176px,100%);aspect-ratio:1;margin:9px auto 0}
+#mchat-test .pixel-board canvas{width:100%;height:100%;border-radius:0;background:#0f141e;touch-action:none}
+#mchat-test .pixel-grid-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(to right,#b3c7e44a 1px,transparent 1px),linear-gradient(to bottom,#b3c7e44a 1px,transparent 1px);background-size:6.25% 6.25%;border:1px solid #4a5971}
+#mchat-test .pixel-board canvas:focus-visible + .pixel-grid-lines::after{content:"";position:absolute;left:calc(var(--cell-x) * 6.25%);top:calc(var(--cell-y) * 6.25%);width:6.25%;height:6.25%;outline:2px solid #fff}
+#mchat-test [data-logo-status]:empty{display:none}
+#mchat-test [data-logo-status]{color:#ffbec8}
+#mchat-test .logo-footer{justify-content:flex-end}
+#mchat-test [data-logo-save]:disabled{opacity:.5}
+#mchat-test .sidebar{display:flex;flex-direction:column;gap:4px}
+#mchat-test .self-profile{display:flex;align-items:center;gap:8px;margin-top:auto;padding:6px;text-align:left;border-top:1px solid var(--edge);border-radius:0 0 8px 8px}
+#mchat-test .self-profile .profile-field-text{display:block;font-size:12px;color:var(--muted)}
+#mchat-test .profile-photo{width:32px;height:32px;border-radius:50%;object-fit:cover;display:block}
+#mchat-test .profile-editor{width:330px}
+#mchat-test .profile-editor #mchat-profile-title{color:#fff;text-align:center}
+#mchat-test .profile-editor form{display:grid;gap:10px;padding:0;border:0;background:transparent}
+#mchat-test .profile-editor label{display:grid;gap:4px;color:#fff;font-weight:600}
+#mchat-test .profile-editor :is(input,textarea){width:100%;min-width:0;background:#151b26;color:#fff;-webkit-text-fill-color:#fff;border:1px solid #435370;border-radius:7px;padding:7px 8px;font:inherit;font-weight:400}
+#mchat-test .profile-editor textarea{min-height:54px;resize:vertical}
+#mchat-test button.profile-picture-edit{position:relative;justify-self:center;display:block;width:76px;height:76px;border-radius:50%;padding:0;margin:4px 0}
+#mchat-test .profile-picture-edit [data-edit-picture-preview]{display:block;width:100%;height:100%}
+#mchat-test .profile-picture-edit [data-edit-picture-preview] > *{width:100%;height:100%}
+#mchat-test .picture-pencil{position:absolute;right:0;bottom:0;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#335f94;color:#fff;box-shadow:0 0 0 2px #1b2330;opacity:0}
+#mchat-test .profile-picture-edit:is(:hover,:focus-visible) .picture-pencil{opacity:1}
+#mchat-test .picture-pencil svg{width:13px;height:13px}
+#mchat-test .profile-footer{display:flex;gap:6px;justify-content:flex-end}
+#mchat-test [data-profile-status]{margin:0;color:#ffbec8}
+#mchat-test [data-profile-status]:empty{display:none}
+#mchat-test .profile-image [data-logo-preview]{border-radius:50%}
+#mchat-test .profile-image [data-logo-preview] > *{width:100%;height:100%}
+#mchat-test [data-logo-dialog].profile-image .pixel-board{width:min(144px,100%)}
+@media (hover:none){#mchat-test .picture-pencil{opacity:1}}
+#mchat-test .sender-name{color:#f1f6ff}
+@media(max-width:460px){#mchat-test .self-profile{align-self:start;margin-top:4px}}
+/* Keep the dark mockup's text readable inside the host preview and native dialogs. */
+#mchat-test, #mchat-test :where(*) {
+  color:#fff !important;
+  -webkit-text-fill-color:currentColor !important;
+}
+#mchat-test :is(input,textarea)::placeholder {
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  opacity:1;
+}
+#mchat-test input::file-selector-button {
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  background:#253348;
+  border:1px solid #435370;
+}
+#mchat-test .mark b {
+  color:transparent !important;
+  -webkit-text-fill-color:transparent !important;
+}
+#mchat-test button.brand{justify-content:flex-start;padding:0 5px 0 0;text-align:left;min-height:34px;width:fit-content}
+#mchat-test .home{display:grid;place-items:center;min-width:0;padding:clamp(18px,5vw,72px)}
+#mchat-test .home-center{display:grid;justify-items:center;gap:14px;width:min(100%,920px);text-align:center}
+#mchat-test .home h2{font-size:clamp(24px,3vw,36px)}
+#mchat-test button.home-profile{display:grid;place-items:center;width:clamp(116px,13vw,168px);aspect-ratio:1;margin:4px 0;padding:4px;border-radius:50%;background:#202b3e}
+#mchat-test .home-profile [data-home-picture],#mchat-test .home-profile [data-home-picture] > *{display:block;width:100%;height:100%;border-radius:50%}
+#mchat-test .home{position:relative;isolation:isolate;overflow:hidden;background:#10131a}
+.home-wall{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;opacity:.42}
+.home-wall-row{display:flex;width:max-content;height:60px}
+.home-wall-row:nth-child(even){transform:translateX(-58px)}
+.home-wall-cell{display:flex;align-items:center;justify-content:center;gap:7px;width:116px;color:#a1bbdb;font-size:12px;font-weight:600;white-space:nowrap}
+.home-wall-cell .mark{width:27px;height:27px;background:#131d2e}
+.home-wall-cell .mark b{font-size:19px}
+#mchat-test .home-wall-cell{color:#a1bbdb !important}
+.home-wall::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,#10131af0 0%,#10131aaa 32%,transparent 76%)}
+
+#mchat-test{width:100%;min-height:100dvh;grid-template-columns:205px minmax(0,1fr)}
+#mchat-test .screen{height:100dvh}
+#mchat-test .feed{overflow:auto;min-height:0}
+#mchat-test .sidebar{height:100dvh;overflow:auto}
+#mchat-test .sidebar nav{margin-bottom:8px}
+#mchat-test .self-profile{margin-top:auto}
+#mchat-test .home{min-height:100dvh}
+#mchat-test :is(select,option){background:#1b2330;color:#fff;border:1px solid #435370;border-radius:7px;padding:5px;font:inherit}
+#mchat-test .dialog-close-form{display:contents}
+#mchat-test dialog{max-height:90dvh;overflow:auto}
+#mchat-test dialog p{overflow-wrap:anywhere}
+#mchat-test [data-directory-dialog],#mchat-test [data-settings-dialog]{width:450px}
+#mchat-test .item-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:5px 0}
+#mchat-test [data-chat-status]{padding:0 12px}
+#mchat-test .attachment{max-width:min(420px,100%);display:block;border-radius:8px;margin-top:5px}
+#mchat-test .bubble{min-width:0}
+@media(max-width:600px){#mchat-test{grid-template-columns:145px minmax(0,1fr)}}
+@media(max-width:460px){#mchat-test{grid-template-columns:1fr}#mchat-test .sidebar{height:auto}#mchat-test .screen,#mchat-test .home{min-height:55dvh;height:auto}#mchat-test .feed{max-height:60dvh}}
+#mchat-test [data-settings-items] input[type=checkbox]{min-width:0;accent-color:#6395c8}
+#mchat-test .self-profile .room-logo,#mchat-test .profile-picture-edit .room-logo,#mchat-test .home-profile .room-logo{border-radius:50%}
+#mchat-test .home-profile .room-logo,#mchat-test .profile-picture-edit .room-logo{font-size:23px}
+
+
+#mchat-test{--control-border:#4b76a8;--control-focus:#8bc5ff}
+#mchat-test button,.container form button,.container .toggle-panel button{
+  border:1px solid var(--control-border,#537eaf);
+}
+#mchat-test button{cursor:pointer}
+#mchat-test button:disabled{cursor:default}
+#mchat-test :is(button,input,select,textarea):focus-visible{
+  outline:2px solid var(--control-focus);
+  outline-offset:2px;
+}
+#mchat-test :is(input:not([type=checkbox]),textarea,select){border-color:var(--control-border)}
+#mchat-test dialog{border-color:var(--control-border);box-shadow:0 18px 50px #050912a8}
+#mchat-test .sidebar [data-directory]{text-align:left;background:#1b283c;padding:7px 10px}
+#mchat-test .sidebar .self-profile{border-radius:8px}
+#mchat-test .home-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px;width:100%;margin-top:8px}
+#mchat-test .home-actions button{display:grid;justify-items:start;align-content:center;gap:4px;text-align:left;min-height:96px;padding:12px 14px;background:#151e2c}
+#mchat-test .home-actions strong{font-size:15px}
+#mchat-test .home-actions span{font-size:12px}
+#mchat-test .home-actions svg{width:20px;height:20px;margin-bottom:3px;fill:none;stroke:#a1cdff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#mchat-test .home-actions .send{background:#335f94}
+#mchat-test .home-actions button:hover{background:#29415d}
+#mchat-test :is([data-directory-dialog],[data-settings-dialog]){width:510px}
+#mchat-test :is([data-friend-form],[data-create-form],.dialog-footer){
+  background:transparent;border:0;padding:0;gap:8px;margin-top:12px;
+}
+#mchat-test .dialog-footer{justify-content:flex-end;padding-top:10px;border-top:1px solid var(--edge)}
+#mchat-test .dialog-footer button{width:auto;flex:none}
+#mchat-test [data-directory-items]{margin-top:14px}
+#mchat-test [data-directory-items] h4{margin-top:9px}
+#mchat-test .recent-chats{width:100%;margin-top:10px;text-align:left}
+#mchat-test .recent-chats h3{margin-bottom:8px}
+#mchat-test [data-recent-list]{display:grid;gap:6px}
+#mchat-test .recent-chat{display:flex;align-items:center;gap:9px;width:100%;min-width:0;text-align:left;background:#151e2c;padding:7px 10px}
+#mchat-test .recent-chat span{min-width:0}
+#mchat-test .recent-chat :is(strong,small){display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mchat-test .recent-chat .profile-photo{flex:none}
+
+#mchat-test [data-picker] {
+  bottom:100%;left:auto;right:12px;width:min(460px,calc(100vw - 32px));
+  background:#171e2b;border-color:var(--control-border);box-shadow:0 12px 32px #080d18a8;
+  display:grid;gap:8px;
+}
+#mchat-test .picker-search{padding:0;background:none;border:0}
+#mchat-test .picker-search input{min-width:0}
+#mchat-test .picker-categories{display:flex;gap:5px;flex-wrap:wrap}
+#mchat-test .picker-categories button{min-height:27px;padding:2px 7px;font-size:12px}
+#mchat-test .picker-results{display:grid;overflow:auto;overscroll-behavior:contain;height:min(32vh,260px);align-content:start;gap:5px;padding:3px}
+#mchat-test .emoji-results{grid-template-columns:repeat(auto-fill,minmax(34px,1fr))}
+#mchat-test .emoji-results button{padding:1px;border-color:transparent;font-size:22px;line-height:1.35;font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif}
+#mchat-test .emoji-results button:hover{border-color:var(--control-border)}
+#mchat-test .gif-results{display:block}
+#mchat-test .gif-results section + section{margin-top:10px}
+#mchat-test .gif-results h4{margin:1px 0 5px;font-size:12px}
+#mchat-test .gif-grid{display:flex;flex-wrap:wrap;align-items:flex-start;gap:5px}
+#mchat-test .gif-grid button{
+  position:relative;flex:0 0 calc((100% - 10px)/3);min-width:0;min-height:0;
+  aspect-ratio:1.3;padding:0;overflow:hidden;background:#202836;
+}
+#mchat-test .gif-grid img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+#mchat-test .picker-status:empty {display:none}
+#mchat-test .picker-status,#mchat-test .picker-footer{font-size:12px}
+#mchat-test .picker-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#mchat-test [data-giphy-credit]{margin-left:auto}
+#mchat-test [data-giphy-credit] img{display:block;max-width:100px;max-height:22px;height:auto}
+#mchat-test .giphy-mark{display:block;max-width:100px;max-height:22px;height:auto;margin-top:4px}
+
+#mchat-test [data-start-call]{min-width:34px}
+#mchat-test [data-call-dock]{position:fixed;left:calc(205px + 12px);bottom:12px;z-index:5;width:min(460px,calc(100vw - 235px))}
+#mchat-test .voice-call{background:#0e1420;border:1px solid var(--edge);padding:12px 16px;display:grid;gap:12px}
+#mchat-test [data-call-dock] .voice-call{border-radius:12px;border-color:var(--control-border);box-shadow:0 10px 32px #0008}
+#mchat-test .voice-call-heading{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+#mchat-test .voice-call-heading p{font-size:12px}
+#mchat-test .call-people{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+#mchat-test .call-person{
+  position:relative;display:grid;justify-items:center;align-content:center;gap:6px;
+  width:clamp(92px,14vw,186px);min-height:94px;padding:8px;border-radius:12px;
+  border:2px solid #34445f;background:#182131;overflow:hidden
+}
+#mchat-test .call-person[data-speaking]{
+  border-color:#8bd5ff;box-shadow:0 0 12px #62bfff66,inset 0 0 9px #62bfff2b
+}
+#mchat-test .call-person img,#mchat-test .call-initials{
+  display:grid;place-items:center;border-radius:50%;width:40px;height:40px;
+  object-fit:cover;background:#293b55;font-weight:600
+}
+#mchat-test .call-person-name{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+#mchat-test .call-person-mute{position:absolute;top:5px;right:6px}
+#mchat-test .call-controls{display:flex;justify-content:center;gap:8px}
+#mchat-test .call-controls button,.incoming-call button{min-width:36px}
+#mchat-test button.call-end{background:#722d42;border-color:#b45167}
+#mchat-test button.call-end:hover{background:#9c3e54}
+#mchat-test button.call-join{background:#335f94}
+#mchat-test .incoming-call,#mchat-test .call-error{
+  position:fixed;z-index:7;right:16px;top:16px;background:#182131;
+  border:1px solid var(--control-border);border-radius:10px;padding:9px 12px;
+  box-shadow:0 8px 22px #0007;max-width:calc(100vw - 32px)
+}
+#mchat-test .incoming-call{display:flex;align-items:center;gap:8px}
+#mchat-test .incoming-call p{font-size:12px}
+#mchat-test .call-error{top:auto;bottom:64px}
+@media(max-width:600px){#mchat-test [data-call-dock]{left:12px;width:min(460px,calc(100vw - 24px))}}
+
+#mchat-test .screen-viewer {
+  display:grid;grid-template-rows:auto minmax(0,1fr);gap:0;max-width:960px;width:100%;min-width:0;
+  margin-inline:auto;background:#090d15;border:1px solid #34445f;border-radius:12px;overflow:hidden;
+}
+#mchat-test .screen-viewer-bar{
+  display:flex;align-items:center;gap:8px;padding:6px 8px;background:#182131;
+}
+#mchat-test [data-screen-label]{margin-right:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mchat-test .screen-picture{position:relative;display:grid;min-width:0;min-height:0;place-items:center;background:#090d15}
+#mchat-test .screen-picture video{display:block;width:100%;height:min(34vh,380px);object-fit:contain}
+#mchat-test [data-screen-wait]{position:absolute;inset:auto 12px;text-align:center}
+#mchat-test [data-call-dock] .screen-picture video{height:min(25vh,225px)}
+#mchat-test .screen-viewer:is(:fullscreen,[data-expanded]){max-width:none;width:100%;height:100%;border:0;border-radius:0;margin:0}
+#mchat-test .screen-viewer:is(:fullscreen,[data-expanded]) .screen-picture video{height:100%}
+#mchat-test .screen-settings{justify-self:center;width:min(100%,360px);background:#182131;border:1px solid #34445f;border-radius:12px;padding:10px 12px}
+#mchat-test .screen-settings form{padding:8px 0 0;background:none;border:0;display:grid;gap:9px}
+#mchat-test .screen-settings label{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#mchat-test .screen-settings-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
+#mchat-test [data-screen-feedback]{font-size:12px;padding-block:3px}
+#mchat-test [data-screen-share][aria-pressed=true]{background:#244768;border-color:#8bd5ff}
+
+#mchat-test .screen-viewer[data-expanded]{position:fixed;inset:0;z-index:9}
+
+#mchat-test .call-people{max-height:min(32vh,245px);overflow:auto;padding:3px}
+#mchat-test .call-person[data-camera-visible]{padding:0;aspect-ratio:16/10;background:#0a0d13}
+#mchat-test .call-webcam{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0a0d13}
+#mchat-test .call-webcam-local{transform:scaleX(-1)}
+#mchat-test .call-person[data-camera-visible] .call-person-name{
+  position:absolute;bottom:5px;left:5px;max-width:calc(100% - 10px);padding:2px 5px;
+  border-radius:4px;background:#0a0d13d9;
+}
+#mchat-test .call-person[data-camera-visible] .call-person-mute{background:#0a0d13d9;border-radius:4px}
+#mchat-test [data-camera-call][aria-pressed=true]{background:#244768;border-color:#8bd5ff}
